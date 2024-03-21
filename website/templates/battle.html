@@ -1,0 +1,51 @@
+<!-- after play_random clicked, change text to stop searching
+if clicked again, will remove current user from mmqueue AND
+therefore stop trying to find match.  once stop is clicked, 
+button should go back to play random -->
+<!DOCTYPE html>
+{% extends "base.html" %} {% block title %}Battle{% endblock %}
+{% block content%}
+	<style>
+		img {
+		width: 100px;
+		border-radius: 10px;
+		}
+		em {
+			color: red;
+			font-style: normal;
+		}
+	</style>
+	<!-- use my own stylesheet for chessboard-->
+    <link rel="stylesheet" href="../static/style.css">
+	<h1>Play a Game</em></h1>  
+	
+	<!-- whenever these are changed, save them to database -->
+	<!-- add input field AND slider that both update each other 
+		 require that min <= max
+		 min and max sliders should adjust based on each other
+		 as well: max of min is min of max, -->
+	<h2> Matchmaking Settings </h2>
+	<div class="slidecontainer" id = "mmsettings">
+		Min Elo Rating
+		<input type="range" min="0" max="4000" value="1200" class="slider" id="minElo">
+		Max Elo Rating
+		<input type="range" min="0" max="4000" value="1200" class="slider" id="maxElo">
+	</div>
+	<!-- use bootstrap buttons here in future.  PlayFriend should
+	send challenge request to friend, play Random should start
+	searching for another opponent also searching to play (socketing)-->
+	<div id = "play">
+		<!-- Script for buttons-->
+		<button id = "playFriend" onclick = "playFriend(this, 'blue')"> play Friend </button>
+		<button id = "playRandom" onclick = "playRandom(this, 'red', '{{user.id}}', 
+		{{elo}}, {{mmsettings}}, {{blocked}})"> play Random </button>
+		<script src="../static/buttons.js"></script>
+	</div>
+	<div id = "board">
+		<script src="../static/pieces.js"></script>
+		<!-- Script for board-->
+		<script src="../static/board.js"></script>
+	</div>
+{% endblock %}
+
+        

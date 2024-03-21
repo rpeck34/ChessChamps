@@ -1,0 +1,119 @@
+keep html files in folder called templates. This folder is special.
+reserved name.
+
+A . when importing means current directory.
+Ex: from . import function
+
+Config..
+hide this key, this is to keep cookies data etc
+app.config['SECRET_KEY'] = 'jhalsdkjfhlakjhlkjshl'
+
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+This is necessary and shows where the database is stored
+three forward slashes are needed in sqlite to signify a relative path.
+
+Initialize db with: db.init_app(app)
+
+Every db table in sqlAlchemy MUST have a primary key.
+This is just an integer that goes up for each entry
+and is usually called id
+
+views functions:
+expect html return.  Can either hardcode html in return:
+return "<h1>Test</h1>"
+or the better option, write in separate file and save to templates
+then render with return render_template(html_file_name)
+
+debug mode makes it so you don't need to restart server
+everytime a change is made in program (if not in debug mode
+simply reloading page in browser won't update changes made
+in files, will have to restart server everytime!!!)
+
+if db created a certain way, even if db file is deleted,
+it will remember the columns it had when you first created it.
+Odd! and annoying for debugging... to make it forget so you can
+add new columns, you have to use db.drop_all().  This completely
+erases db and all memory of the models and forms.
+
+use url_for rather than just raw url directory.
+this is better for refactoring.  Obviously url_for()
+function finds the url of the input route
+
+flash shows a message on screen to alert user
+category is to group similar message types, its purely
+for your own quality of life/ the user, and they can
+be named anything
+			
+db additions are like git and you have to commit them after
+you add them, so go db.session.add(), then db.session.commit
+	
+first() returns only the first result (rather than scan the whole db)
+since only one is enough no need not to use first().  first() returns
+none if no matches found
+		
+werkzeug security...
+super useful, this is for storing and reading a password in hash.
+Never store passwords in plaintxt!  Only user should know their
+actual password, you just have hash.  In case someone hacks in
+they will only see hashes and not the actual passwords, no way for
+them to go from hash to password either, hashes are pretty much one way.
+
+http requests...
+By default only get requests are accepted.  Have to
+manually add other requests to work.  GET POST ETC. are
+part of the http protocol.  When you go to a page
+initially, that counts as a GET request.  A POST request
+would be something like filling a form out and clicking submit.
+
+Images js and css files you write go in the static folder
+
+Jinja allows you to write python in html documents.
+Basically Jinja lets you not have to know javascript!
+
+in an html file you can use {{}} and python code will be
+evaluated.  Must be a result of running with Flask cuz
+you definitely can't do this normally.  Example
+<script
+    type="text/javascript"
+    src="{{ url_for('static', filename='index.js')}}"
+></script>
+in the above example the url_for is a python function
+and so it is pure python code that gets evaluated in the {{}}.
+Note there are some limitations to what can go in {{}} still.
+
+Another thing to note with Jinja2.  If you write another separate js
+file and import it into an html document that is using Jinja2, if the
+imported js file has Jinja2 in it, it won't work.  If you write Jinja2
+code in a js script, it has to be a script directly written on to
+the html page using a <script type="text/javascript"> tag.  One way
+around this is to pass the Jinja2 variables to js scripts or event
+functions.  For example, user.username in battle.html is passed into
+buttons.js so that when button is clicked, username data is received
+
+Sometimes you have to hard reload and clear cache to fix
+errors.  Don't forget about this trick.  Your browser might
+be remembering stuff from an older version of your program
+which causes errors with the updated version.  Something like this...
+
+SIMPLE BUT STUPID PLEASE READ:
+When putting together website I couldn't figure out how to find path
+for images.  I thought since we run main.py, then that is the root
+and all paths will be referenced from there.  I was WRONG about this.
+For the current html page that is being served, that file location becomes
+root.  Since all html pages are in templates then templates folder is root.
+So all images (stored in static) should look something like this in the
+html:  <image src = ../static/Art/......>.
+Actually now that I think about it more, maybe relative pathing works
+differently than I thought.  Could be that MultiplayerChess is still root,
+but when you are on an html page, you are automatically relatively pathed
+to that page, so when you write another relative path, it starts you
+from where the html page is located.  MultiplayerChess is still root, but
+on each page we have already relative pathed over into that html file
+directory (so template folder).
+
+flask_login gives access to current_user var which is attached
+to the sqlite db.  For example we can use current_user.username
+which will find the current user in the db and return their username
+This is useful for dynamic webpages for different users.  Pass the
+current_user var into a render_template so that the html has access
+to all of the user's info in the sqlite database!

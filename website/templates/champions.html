@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% extends "base.html" %} {% block title %}Champions{% endblock %}
+{% block content%}
+
+	<script src="../static/buttons.js"></script>
+	<!-- champion info here, only show this if player is new
+	account and has no champions yet-->
+	<h1>About Champions</em></h1>  
+	<p>There are a variety of champions with different
+	abilities that will help you conquer your opponents over
+	the board.  Each champion has a unique talent tree that you
+	will fill out as you level up.  Levels come from winning games
+	which results in experience gained, with higher rated opponents
+	worth more experience.  You cannot lose experience only rating.
+	Your experience and rating are tied to your champion not to your
+	account.  You can have one of each champion for a single account.
+	The road to max level is a long one however, so choose your
+	champion wisely.  Read more about each champion and learn about
+	their talent trees below!</p>
+	
+	<!-- Only show if player has at least one champ made -->
+	<!-- go through user.Champion table and see num champs
+	in order from id primary key.  Each champ will get a button
+	here that will make that champ the user.selected_champ in db
+	and move over to the champion_manager page for that champ -->
+	<h1> Select </h1>
+	<div class="championselector" id = "championselector">
+		{% for champ in user.champions %}
+		<button id = '{{champ.champ_class}}' onclick = "selectChampion(this, '{{champ.champ_class}}')"> {{champ.champ_class}} </button>
+		{% endfor %}
+	</div>
+	
+	<h1> Create </h1>
+	<div class="championcreator" id="championcreator">
+		{% for champ in champs %}
+		<button id = "create'{{champ}}'" onclick = "createChampion(this, '{{champ}}')"> {{champ}} </button>
+		{% endfor %}
+	</div>
+{% endblock %}

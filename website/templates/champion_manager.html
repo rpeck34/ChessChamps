@@ -1,0 +1,51 @@
+<!-- After creating new champion or selecting a champion from
+	the champion page, user gets redirected here where they can
+	read stats, see elo, lvl, achievements etc. change talents,
+	and importantly, select champion for battle which alerts db-->
+<!DOCTYPE html>
+{% extends "base.html" %} {% block title %}Champion Manager{% endblock %}
+{% block content%}
+
+	<script src="../static/buttons.js"></script>
+	<!-- There will be lots of Jinja here....-->
+	<h1>Champ Class Here (Jinja?)</h1>
+	<p>General lore about class (Jinja?)</p>
+	<p>lvl,elo
+	highest elo achieved (store in champ table in db)
+	date created (store in champ table)
+	achievements obtained... list
+	(achievements obtained should go in champ db too?)
+	graph of percentile, toggle between friends, global,
+	and another toggle including all classes or just that class.
+	This will be hard and require some live db querying (well
+	get a recent snapshot of the data anyways)
+	</p>
+	<h1>Talents</h1>
+	<!--id = {{class}}-->
+	<div class ="talenttree" id="Warlock">
+		<!-- class specific and user specific talent tree
+		goes here.  load talents from talent table in db.
+		should be mouseover details about talents, little 
+		ui images for each talent, num points in / max ponts
+		a general points left number somewhere, which either
+		gets free points from db or calculates based on points
+		spent and lvl of current champ. Submit changes button
+		that will update db.  Since db only updates after Submit
+		changes, must be inherent logic to page here with Jinja.
+		Can't put more points in when they dont have. the
+		talents will be buttons you click.  when max reached can't
+		click anymore.  If not available due to rqrments not
+		being fulfilled also stop being clickable button.
+		If on bottom row clickable until full
+		If higher up, unclickable until talent beneath it filled-->
+		<button id = "submittalents" onclick = "submitTalents(this)"> Submit </button>
+		<button id = "undotalents" onclick = "undoTalents(this)"> Undo </button>
+	</div>
+	<!-- take current champion to battle page -->
+	<div class="battle" id="battle">
+		<button id = "readyForBattle" onclick = "readyForBattle(this)"> Ready for Battle! </button>
+	</div>
+	<div>
+		<button id = "deleteChampion" onclick = "deleteChampion(this)"> Delete Champion </button>
+	</div>
+{% endblock %}

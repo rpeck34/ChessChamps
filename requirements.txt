@@ -1,0 +1,5 @@
+flask
+sqlite
+flask_socketio
+eventlet (for better server that doesn't use polling
+like the werkzeug flask dev server)

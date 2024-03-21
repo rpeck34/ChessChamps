@@ -1,0 +1,156 @@
+I don't think ahead this could very well happen again.
+
+I need to spend a lot of time on each of these.  I need discipline to struggle through the boring stuff before
+I can get to the fun part of making my game.
+
+Tackle the big ideas first with scalability in mind.  Always pick the option that would be most scalable in case
+this goes big.  Do the work now, not later when it becomes exponentially more work!  Work smarter not harder.
+
+BIG CHALLENGES ARE:
+CODING THE GAME
+ART (AI INSPIRATION, PIECES, ANIMATIONS?)
+CREATING THE SOUND (SFX, MUSIC)
+MAKING THE WEBSITE (ALL PAGES, LINKING TOGETHER, LOGIN VS LOGOUT PAGES)
+FINDING THE SERVER
+SUCCESSFULLY USING DATABASE (USER INFO, MATCHMAKING, APPROPRIATE USERNAMES)
+FIGURING OUT ALLOWING LEGAL PAYMENT TRANSACTIONS
+OPTIONAL... MACHINE LEARNING CHESS ENGINE
+
+Learned git and github with techwithtim and other youtube tutorials
+Learned some tricks webstorm can do (high integration with git!, quick access
+to modules with structure! good autofill code!)
+
+Learned some node.js and realized it is probably not what I am looking for and is
+redundant.
+
+Understand what js and React are, their differences etc.  Download react and anything else I need.
+
+Open all my files, react?, js, txt, etc in webstorm/ make my existing repos webstorm projects!
+
+Make sure changes in chesschamps repo affect website
+
+I am making a web game, what is the best language to do this in for my game?
+I need HTML and some form of javascript, but which javascript, what are the different javascripts?  what are the pros
+and cons of each?  Basically, which framework and why?
+
+why js and not another language: As far as I know JS is THE way to build web games.
+Nothing else can do this effectively.  Everything else has to be compiled then downloaded.
+Users won't have to download my game if it plays within the web.  Websites are built with
+html, so html and javascript go hand in hand.
+
+what is a framework: A framework is
+
+note node js (used by netflix and facebook to scale backend architecture) is not a framework
+but it is a js runtime environment (whatever that means?)  it is a server?
+I've tried using it before and it was server related...
+
+js frameworks: "vanilla" (no framework, just js), alpine, jquery, react,
+svelt, so many more... there are like 20.
+
+framework chosen: React (saw a video and memed it... it is super popular, Cody uses too)
+
+why this framework?:  Popularity, Cody knows it so can help.  Should be able to do what
+I want.
+
+Now that I have the languages chosen, I need a good IDE to write code in these languages.
+
+IDEs: Atom, VScode, Unity, notepad, WebStorm
+
+IDE chosen:  I chose WS because there were a lot of good reviews about it and it is meant for web development.
+VScode was a close second but I've used it before and found all the options confusing and overbearing.  It can
+be a bit slow at times too because it has so much power behind it.  I wanted something simpler so I went with
+WebStorm
+
+I will use github for version control software
+
+The components of my game are a website, a server, a database, js code for the game
+
+what is my website name: chesschamps.ca
+
+Is it live and running?: yes!
+
+can I adjust it by changing github js/html code?:
+
+servers:
+
+what server will I use and why:
+
+databases:
+
+what database system will I use and why:
+
+Need separate databases for past games and users and...?
+
+user database will be more complicated, users will have personal, real life info like name
+address, bank card if they enter it etc.  Then there will be game info as well like champs,
+game history (each match will have a unique number so they can be referred to in the past
+games database), and more.
+
+How do the code,website,server, and databases interact with each other?:
+
+Can I make a user account on the website, add that to database, then have the website
+change based off of the new user (login page etc)?
+
+FILL IN THE BLANKS LATER just make sure all parts are barebones but can work together.
+Build the skeleton before adding on the meat
+
+Website pages: home page, login page, user profile page, payment info page, error page(s),
+champion create page, champ select page, purchase page (for extra content), user main page
+(shows available champions if any, and matchmaking etc.) Userinfo page for general user **
+User info page looks different if you check out your own page (show more info) or if you check
+out another page (show less), match history (attached to database), matchmaking page (with
+different options to choose to find match), champion page (to select talents and view info)
+play/game page (after match is found), friends page
+
+HTML tutorial:
+
+CSS styling:
+
+Make all these pages blank and have them connect to the appropriate pages.  Some should only
+be visible while logged in.  Most are not seen if logged out.
+
+Are all the pages linked to each other in the correct way?  Can I access them all?
+
+Now add in database user info.  Can I log in to different accounts using DB and become the
+correct user?  Can I logout?  Can I add cookies that remember me so I don't always have
+to login each time? (Flask did this easily)
+
+After this I can finally build the game a little bit: Need bare minimum of a chess board with
+pieces that can move.  Don't even need to move properly, just need to be movable!
+
+Watch js tutorial and add chess board with moving pieces to play page.
+
+If I open two tabs as two separate users on the matchmaking page, can we start a match?
+
+Can each player move the pieces only on their turn?
+
+Are the movements synced?  No funny business?
+
+Does matchmaking fail if requirements aren't in range?  Does it only work when they are?
+
+Add chat option to play page so players can talk to each other!!
+
+DB stores player chats under games database.
+
+Each match should be saved in database using unique match number.
+
+can each user that participated in game go into games history page and
+see the past games they played (list of moves, chat, result, etc)?
+
+At this point we should have a bare-bones website with a working user and games DB
+and matchmaking.
+
+Watch a tutorial on js chess to get all chess piece moves.
+
+Adapt code as needed, I'll need each square to be an object with properties.  Pieces are
+objects too.  Don't do functional.  I want to do a lot with the pieces and squares.
+I will probably want to keep updating and adding more functionality.  Then objects are
+the easiest way to do this.  They scale much better than functions.  Has to be objects!
+
+Do all pieces move the way I want?
+
+Can I adjust their movements easily?
+
+Now add in extra champions
+
+Ok thats enough for now.  Can only plan so far ahead...

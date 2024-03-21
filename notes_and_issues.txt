@@ -1,0 +1,87 @@
+use "python main.py" to run with flask_socketio
+use "python wsgi.py" to run with eventlet
+
+apparently eventlet is better server than the werkzeug server
+that flask uses inherently. 
+
+Noticed that both give me same issue of "transport polling"?
+Get regular messages from the server while connected to website
+that are annoying and I would rather not have.  Not sure why
+they are coming.  Using eventlet was supposed to stop this but
+it didn't.  Not sure, doesn't seem to be happening as much now
+for some reason, maybe its ok now.  just running with main.py
+
+get db with relationships working
+there are users, each user has a single account tied to their email.
+Can change username, but have unique userid given to them when they
+make account.  Ok.  So have db for user.  Each user has to make
+at least one champion to start playing.  So need a champion selection
+screen.  Each champ has a unique talent tree so need that too.
+Once a user has a champion and talents selected add this info to
+their db.  Also elo and lvl are not user based but champion based.
+So if a strong player starts a new champion they will start at low
+elo.  Maybe this is ok... might have to change this if smurfing
+ruins game.
+
+So db looks like:
+user, user stuff, champ 1	-> tree 1
+					champ 2 -> tree 2
+					champ 3 -> tree 3
+					...
+				
+Alright so basically for each user, we store all their champs in 
+another independent table, and for each champ we store that champs
+talents in yet another independent table.  unique user_id is
+key for champs, while unique champ_id for each user will be key
+for trees.  Try this out!
+
+To do for now though, make the champ select and basic talent tree
+pages.  Clicking the button will select that champ and update db.
+Then going to talent tree page and making changes there should
+update tree table.
+
+When a champ is made they will start with one talent point,
+otherwise they should just play regular chess.
+Then, make sure all the first talents are fun but not
+gamebreaking.  This will be the most important talent to focus
+on as it should give an accurate vibe for the idea behind the class
+be fun, but be balanced roughly with other champs and not totally op
+
+sqllite3 is not a heavy duty db.  Sounds like I might want to use 
+only for testing and then switch to another one for production.
+Luckily, with flask_sqlalchemy, this is easy.  I should only need
+to switch the name of the db in my main or init files and it should
+run normally.  flask_sqlalchemy is called an ORM (object relationship
+mapper) and treats databases in an object oriented way.  Powerful tool!
+
+Use bootstrap for this project since bootstrap is still good,
+but in future try tailwind.  Cody said this is the new bootstrap
+and everyone is starting to use it over bootstrap now.
+
+Need to get rid of all href location changes in js files particular
+in buttons.js.  These always happen but I only need conditional
+html page changes.  Example, if delete champion but no champ deleted
+stay on same page.  Else, go back to champions page. That kind of thing
+So either need flaskio redirect working, emit event and listen 
+in js, or some other way I don't know about.
+
+Cody said two possible solutions... in js there is no callback
+But look at callback in flask.  
+Othewise need separate event and handler for after function is run.
+
+Communication is one-sided... java emits are handled by flask no problem
+but flaks emits and url redirect attempts don't change anything and
+are not picked up by the js...
+
+Champion select page: create button should only appear for classes
+that aren't made yet.  No button = impossible to create second.
+Keep logic in still though in case someone clicks button twice fast.
+Or for any other reason.  Should be impossible to make second champ
+of same type
+
+After champ created, both select and create champ should immediately
+update (reload page? is there a better way?  Handle in emit even!!)
+(is there a refresh element in html?)
+
+Right now socketio is in base.  Every page we go to there
+is a reconnection with socket... is this desirable or no?

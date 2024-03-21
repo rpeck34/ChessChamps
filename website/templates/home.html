@@ -1,0 +1,9 @@
+<!-- the extends keyword in jinja allows us
+to completely copy the layour of base.html.
+wherever {}appear we can replace those
+elements to customize our page -->
+{% extends "base.html" %} {% block title %}Chess Champs{% endblock %} 
+{% block content%}
+    <h1>Welcome to <em>Chess Champs</em></h1>  
+	<img src = "../static/Art/PageImages/HotPotChess.png">
+{% endblock %}

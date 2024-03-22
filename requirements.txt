@@ -1,4 +1,6 @@
 flask
-sqlite
-flask_socketio
+flask-login
+flask-socketio
+Flask-SQLAlchemy
+werkzeug
 eventlet
